@@ -1,0 +1,37 @@
+# read excel file
+
+
+
+df_train = df_train.drop(['parcelid', 'logerror', 'transactiondate', 'propertyzoningdesc', 'propertycountylandusecode'], axis=1)
+feat_names = df_train.columns.values
+
+for c in df_train.columns:
+    if df_train[c].dtype == 'object':
+        lbl = LabelEncoder()
+        lbl.fit(list(df_train[c].values))
+        df_train[c] = lbl.transform(list(df_train[c].values))
+
+#import xgboost as xgb
+xgb_params = {
+    'eta': 0.05,
+    'max_depth': 8,
+    'subsample': 0.7,
+    'colsample_bytree': 0.7,
+    'objective': 'reg:linear',
+    'silent': 1,
+    'eval_metric': 'mae',
+    'seed' : 0
+}
+dtrain = xgb.DMatrix(df_train, train_y, feature_names=df_train.columns.values)
+model = xgb.train(dict(xgb_params, silent=1), dtrain, num_boost_round=150)
+
+# plot the important features #
+fig, ax = plt.subplots(figsize=(12,18))
+xgb.plot_importance(model, height=0.8, ax=ax)
+plt.show()
+
+
+import xgbfir
+xgbfir.saveXgbFI(model, feature_names=df_train.columns.values, OutputXlsxFile = datadir + 'featFIbasic.xlsx')
+
+featFI = pd.ExcelFile(datadir + 'featFIbasic.xlsx')
