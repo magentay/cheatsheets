@@ -35,3 +35,6 @@ import xgbfir
 xgbfir.saveXgbFI(model, feature_names=df_train.columns.values, OutputXlsxFile = datadir + 'featFIbasic.xlsx')
 
 featFI = pd.ExcelFile(datadir + 'featFIbasic.xlsx')
+featFI.sheet_names
+df1 = featFI.parse('Interaction Depth 1')
+df1
