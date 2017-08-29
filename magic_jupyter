@@ -1,0 +1,45 @@
+1. Keyboard Shortcuts
+   Ctrl + Shift + P: access keyboard shortcuts
+   Ctrl + Shift + - will split the current cell into two from where your cursor is.
+   Esc + A to insert a new cell above the current cell, Esc + B to insert a new cell below.
+   Esc + M to change the current cell to Markdown, Esc + Y to change it back to code
+   Esc + D + D (press the key twice) to delete the current cell
+   Esc + F Find and replace on your code but not the outputs.
+   Esc + O Toggle cell outp
+   Shift + J or Shift + Down selects the next cell in a downwards direction.
+   Shift + K or Shift + Up.  select cells in an upwards direction 
+   Shift + M to merge multiple cells.
+   
+   
+2. Pretty Display of Variables
+   from IPython.core.interactiveshell import InteractiveShell
+   InteractiveShell.ast_node_interactivity = "all"
+   
+3. IPython Magic Commands
+   %lsmagic : list all magic commands
+   %env: Set Environment Variables (%env OMP_NUM_THREADS=4)
+   %run: Execute python code (%run ./two-histograms.ipynb)
+   %load: Insert the code from an external script (%load ./hello_world.py)
+   %store: Pass variables between notebooks. (%store data %store -r data)
+   %who: List all variables of global scope. (%who str)
+   %%time will give you information about a single run of the code in your cell.
+   %%timeit uses the Python timeit module which runs a statement 100,000 times (by default) and then provides the mean of the fastest three times.
+   %%writefile magic saves the contents of that cell to an external file
+   %pycat shows you (in a popup) the syntax highlighted contents of an external file.
+   %prun: Show how much time your program spent in each function
+   %pdb Debugging 
+   
+   
+   
+   
+   
+   
+   
+
+
+
+
+   
+   
+
+    
